@@ -67,7 +67,7 @@ ERROR trong payment.log: 3
 ```shell
 "===TONG HOP ACCESS LOG===" > .\logs\tong_hop_ngay2.txt
 gc .\logs\access.log | select-string "ERROR" >> .\logs\tong_hop_ngay2.txt
-gc .\logs\payment.log | select-string "WARNING" | Measure-Object >> .\logs\tong_hop_ngay2.txt
+(gc .\logs\payment.log | select-string "WARNING" | Measure-Object).Count >> .\logs\tong_hop_ngay2.txt
 
 ```
 
@@ -92,7 +92,7 @@ gc .\logs\payment.log | select-string "WARNING" | Measure-Object >> .\logs\tong_
 
 - **a)** Lệnh `>` để ghi đè, xoá toàn bộ nội dung cũ
          Lệnh `>>` để thêm nối tiếp nội dung vào cuối file (Không xoá nội dung cũ)
-- **b)** Nếu dùng `>` thay cho `>>` ở lệnh thứ 2, tiêu đề vừa thêm ở lệnh 1 sẽ bị xoá/ghi đè, chỉ còn các dòng chứa `ERROR`
+- **b)** Nếu dùng `>` ở lệnh thứ 2, nội dung file `tong_hop_ngay2.txt` sẽ bị ghi đè, làm mất dòng tiêu đề `===TONG HOP ACCESS LOG===` đã tạo ở lệnh 1, và file chỉ còn lại các dòng chứa `ERROR`
 - **c)** Sử dụng đường dẫn tương đối giúp script có thể chạy trên bất kì máy tính nào mà không bị lỗi như đường dẫn tuyệt đối (Chỉ có trên máy của người chia sẻ file/thư mục)
 
 ## Tự chấm (điền sau khi có đáp án)
